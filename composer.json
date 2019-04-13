@@ -1,0 +1,31 @@
+{
+    "name": "profitroom/coding-standards",
+    "description": "Package that helps maintain coding standards among company's products",
+    "type": "composer-plugin",
+    "require": {
+        "composer-plugin-api": "^1.1",
+        "friendsofphp/php-cs-fixer": "^2.14"
+    },
+    "require-dev": {
+        "composer/composer": "^1.8"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Andrzej Kupczyk",
+            "email": "andrzej.kupczyk@profitroom.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Profitroom\\CodingStandards\\": "src/"
+        }
+    },
+    "extra": {
+        "class": "Profitroom\\CodingStandards\\CodingStandardsPlugin"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
