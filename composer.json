@@ -1,6 +1,6 @@
 {
     "name": "profitroom/coding-standards",
-    "description": "Package that helps maintain coding standards among company's products",
+    "description": "A plugin that helps maintain coding standards among different products",
     "type": "composer-plugin",
     "require": {
         "composer-plugin-api": "^1.1",
