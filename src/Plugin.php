@@ -13,7 +13,7 @@ use Composer\Script\ScriptEvents;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-class CodingStandardsPlugin implements PluginInterface, Capable, EventSubscriberInterface
+class Plugin implements PluginInterface, Capable, EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
     {
