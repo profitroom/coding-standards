@@ -10,7 +10,8 @@ use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
-use Profitroom\CodingStandards\Configuration\Obligatory;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class CodingStandardsPlugin implements PluginInterface, Capable, EventSubscriberInterface
 {
@@ -23,21 +24,28 @@ class CodingStandardsPlugin implements PluginInterface, Capable, EventSubscriber
 
     public static function onPostUpdate(Event $event): void
     {
-    }
+        $composer = $event->getComposer();
+        $io = $event->getIO();
 
-    public function activate(Composer $composer, IOInterface $io): void
-    {
-        $codingStandard = PackageConfigReader::codingStandard($composer->getPackage());
+        $codingStandards = PackageConfigReader::codingStandards($composer->getPackage());
 
-        if (!is_subclass_of($codingStandard, Obligatory::class)) {
+        if (!is_subclass_of($codingStandards, Configuration\Obligatory::class)) {
             throw new \RuntimeException(
-                "Coding standard [{$codingStandard}] must extend obligatory standards."
+                "Configuration [{$codingStandards}] must extend obligatory coding standards."
             );
         }
 
         if ($io->isDebug()) {
-            $io->write("<info>Using {$codingStandard} coding standard</info>");
+            $io->write("<info>Using {$codingStandards} coding standard</info>");
         }
+
+        $command = new Command\ConfigurationCommand;
+        $command->setComposer($composer);
+        $command->run(new StringInput(''), new ConsoleOutput);
+    }
+
+    public function activate(Composer $composer, IOInterface $io): void
+    {
     }
 
     public function getCapabilities(): array

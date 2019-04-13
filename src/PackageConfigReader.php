@@ -7,7 +7,7 @@ use Profitroom\CodingStandards\Configuration\Common;
 
 class PackageConfigReader
 {
-    public static function codingStandard(RootPackageInterface $rootPackage): string
+    public static function codingStandards(RootPackageInterface $rootPackage): string
     {
         return $rootPackage->getExtra()['coding-standard'] ?? Common::class;
     }

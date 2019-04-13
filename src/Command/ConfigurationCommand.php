@@ -28,23 +28,25 @@ class ConfigurationCommand extends BaseCommand
     protected function configure()
     {
         $this->setName('cs:configuration')
-            ->setDescription('Create config file for the PHP Coding Style fixer')
-            ->addOption('force', null, InputOption::VALUE_NONE, 'Forces operation even if the config already exists');
+            ->setDescription('Create coding standards config')
+            ->addOption('force', null, InputOption::VALUE_NONE, 'Force operation even if the config already exists');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (!$input->getOption('force') && $this->filesystem->exists($this->configFile)) {
-            throw new \RuntimeException('Config file already exists');
+        if ($this->filesystem->exists($this->configFile) && !$input->getOption('force')) {
+            $output->writeln('Coding standards file already exists');
+
+            return;
         }
 
-        $output->writeln('<info>Crafting config file for the project... 👷</info>');
+        $output->writeln('<info>Crafting coding standards config for the project 👷</info>');
 
-        $codingStandard = PackageConfigReader::codingStandard($this->getComposer()->getPackage());
+        $codingStandards = PackageConfigReader::codingStandards($this->getComposer()->getPackage());
 
         $this->filesystem->dumpFile(
             $this->configFile,
-            "<?php return (new {$codingStandard})->config();\n"
+            "<?php return (new {$codingStandards})->config();\n"
         );
     }
 }
