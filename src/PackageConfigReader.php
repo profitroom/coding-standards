@@ -9,6 +9,14 @@ class PackageConfigReader
 {
     public static function codingStandards(RootPackageInterface $rootPackage): string
     {
-        return $rootPackage->getExtra()['coding-standard'] ?? Common::class;
+        $codingStandards = $rootPackage->getExtra()['coding-standard'] ?? Common::class;
+
+        if (!is_subclass_of($codingStandards, Configuration\Obligatory::class)) {
+            throw new \RuntimeException(
+                "Configuration [{$codingStandards}] must extend obligatory coding standards."
+            );
+        }
+
+        return $codingStandards;
     }
 }

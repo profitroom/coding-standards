@@ -5,7 +5,7 @@ namespace Profitroom\CodingStandards\Configuration;
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-abstract class Obligatory implements Ruleset
+abstract class Obligatory implements Rulesets
 {
     /** @var \PhpCsFixer\Config */
     private $config;

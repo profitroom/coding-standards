@@ -29,12 +29,6 @@ class Plugin implements PluginInterface, Capable, EventSubscriberInterface
 
         $codingStandards = PackageConfigReader::codingStandards($composer->getPackage());
 
-        if (!is_subclass_of($codingStandards, Configuration\Obligatory::class)) {
-            throw new \RuntimeException(
-                "Configuration [{$codingStandards}] must extend obligatory coding standards."
-            );
-        }
-
         if ($io->isDebug()) {
             $io->write("<info>Using {$codingStandards} coding standard</info>");
         }

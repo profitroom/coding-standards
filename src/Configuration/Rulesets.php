@@ -2,7 +2,7 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
-interface Ruleset
+interface Rulesets
 {
     public const CODING_STYLE_PLUGIN = [
         '@PhpCsFixer' => true,
