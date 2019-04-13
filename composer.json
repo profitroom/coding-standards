@@ -8,7 +8,8 @@
         "symfony/filesystem": "^4.2"
     },
     "require-dev": {
-        "composer/composer": "^1.8"
+        "composer/composer": "^1.8",
+        "phpmd/phpmd": "^2.6"
     },
     "license": "proprietary",
     "authors": [
@@ -22,16 +23,22 @@
             "Profitroom\\CodingStandards\\": "src/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "csfix": "php-cs-fixer fix --ansi --diff-format=udiff",
+        "analyse": [
+            "phpmd src text phpmd.xml"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         },
         "class": "Profitroom\\CodingStandards\\Plugin"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
