@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Profitroom\CodingStandards\Configuration;
 
@@ -12,14 +12,19 @@ abstract class Basic
 
     private static function requiredRules(): array
     {
-        return [];
+        return [
+            '@PSR2' => true,
+            'concat_space' => ['spacing' => 'one'],
+            'general_phpdoc_annotation_remove' => ['annotations' => ['author']],
+            'new_with_braces' => false,
+        ];
     }
 
     final public function __construct()
     {
         $rules = array_merge_recursive(
             $this->specificRules(),
-            static::requiredRules()
+            self::requiredRules()
         );
 
         $this->config = Config::create()
@@ -29,7 +34,7 @@ abstract class Basic
 
     public function config(): Config
     {
-        return $this->config;
+        return clone $this->config;
     }
 
     protected function finder(): Finder
