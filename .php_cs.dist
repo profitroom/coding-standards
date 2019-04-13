@@ -1,0 +1,16 @@
+<?php
+
+require_once 'vendor/autoload.php';
+
+use PhpCsFixer\Finder;
+use Profitroom\CodingStandards\Configuration\Basic;
+
+$basic = new class extends Basic
+{
+    protected function finder(): Finder
+    {
+        return parent::finder()->in(__DIR__ . '/src');
+    }
+};
+
+return $basic->config();
