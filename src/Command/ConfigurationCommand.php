@@ -3,7 +3,7 @@
 namespace Profitroom\CodingStandards\Command;
 
 use Composer\Command\BaseCommand;
-use Symfony\Component\Console\Input\InputArgument;
+use Profitroom\CodingStandards\PackageConfigReader;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,7 +14,7 @@ class ConfigurationCommand extends BaseCommand
     /** @var string */
     private $configFile;
 
-    /** @var \Profitroom\CodingStandards\Command\Filesystem */
+    /** @var \Symfony\Component\Filesystem\Filesystem */
     private $filesystem;
 
     public function __construct(string $name = null)
@@ -29,7 +29,6 @@ class ConfigurationCommand extends BaseCommand
     {
         $this->setName('cs:configuration')
             ->setDescription('Create config file for the PHP Coding Style fixer')
-            ->addArgument('name', InputArgument::REQUIRED, 'FQCN of the configuration')
             ->addOption('force', null, InputOption::VALUE_NONE, 'Forces operation even if the config already exists');
     }
 
@@ -41,9 +40,11 @@ class ConfigurationCommand extends BaseCommand
 
         $output->writeln('<info>Crafting config file for the project... 👷</info>');
 
-        $this->filesystem->dumpFile($this->configFile, sprintf(
-            "<?php return (new %s)->config();\n",
-            $input->getArgument('name')
-        ));
+        $codingStandard = PackageConfigReader::codingStandard($this->getComposer()->getPackage());
+
+        $this->filesystem->dumpFile(
+            $this->configFile,
+            "<?php return (new {$codingStandard})->config();\n"
+        );
     }
 }

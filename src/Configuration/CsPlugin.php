@@ -8,8 +8,13 @@ use PhpCsFixer\Finder;
 /**
  * Plugin's very own configuration.
  */
-class CsPlugin extends Basic
+final class CsPlugin extends Obligatory
 {
+    public static function specificRules(): array
+    {
+        return static::CODING_STYLE_PLUGIN;
+    }
+
     public function config(): Config
     {
         return parent::config()->setRiskyAllowed(true);
@@ -18,21 +23,5 @@ class CsPlugin extends Basic
     protected function finder(): Finder
     {
         return parent::finder()->in(__DIR__ . '/..');
-    }
-
-    protected function specificRules(): array
-    {
-        return [
-            '@PhpCsFixer' => true,
-            '@Symfony' => true,
-            'blank_line_after_opening_tag' => false,
-            'declare_strict_types' => true,
-            'multiline_whitespace_before_semicolons' => [
-                'strategy' => 'no_multi_line',
-            ],
-            'visibility_required' => [
-                'elements' => ['const', 'method', 'property'],
-            ],
-        ];
     }
 }
