@@ -2,7 +2,6 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
-use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
 /**
@@ -10,14 +9,11 @@ use PhpCsFixer\Finder;
  */
 final class CsPlugin extends Obligatory
 {
+    protected $riskyAllowed = true;
+
     public static function specificRules(): array
     {
         return static::CODING_STYLE_PLUGIN;
-    }
-
-    public function config(): Config
-    {
-        return parent::config()->setRiskyAllowed(true);
     }
 
     protected function finder(): Finder

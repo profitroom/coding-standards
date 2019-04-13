@@ -7,6 +7,9 @@ use PhpCsFixer\Finder;
 
 abstract class Obligatory implements Rulesets
 {
+    /** @var bool */
+    protected $riskyAllowed = false;
+
     /** @var \PhpCsFixer\Config */
     private $config;
 
@@ -21,7 +24,8 @@ abstract class Obligatory implements Rulesets
 
         $this->config = Config::create()
             ->setFinder($this->finder())
-            ->setRules($rules);
+            ->setRules($rules)
+            ->setRiskyAllowed($this->riskyAllowed);
     }
 
     public function config(): Config
