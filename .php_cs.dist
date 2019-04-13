@@ -2,15 +2,6 @@
 
 require_once 'vendor/autoload.php';
 
-use PhpCsFixer\Finder;
-use Profitroom\CodingStandards\Configuration\Basic;
+use Profitroom\CodingStandards\Configuration\CsPlugin;
 
-$basic = new class extends Basic
-{
-    protected function finder(): Finder
-    {
-        return parent::finder()->in(__DIR__ . '/src');
-    }
-};
-
-return $basic->config();
+return (new CsPlugin)->config();
