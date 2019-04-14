@@ -3,17 +3,16 @@
 namespace Profitroom\CodingStandards;
 
 use Composer\Package\RootPackageInterface;
-use Profitroom\CodingStandards\Configuration\Common;
 
 class PackageConfigReader
 {
-    public static function codingStandards(RootPackageInterface $rootPackage): string
+    public static function codingStandards(RootPackageInterface $package): string
     {
-        $codingStandards = $rootPackage->getExtra()['coding-standard'] ?? Common::class;
+        $codingStandards = $package->getExtra()['coding-standards'] ?? Configuration\Common::class;
 
-        if (!is_subclass_of($codingStandards, Configuration\Obligatory::class)) {
+        if (!is_subclass_of($codingStandards, Configuration\Mandatory::class)) {
             throw new \RuntimeException(
-                "Configuration [{$codingStandards}] must extend obligatory coding standards."
+                "Configuration [{$codingStandards}] must extend mandatory coding standards."
             );
         }
 

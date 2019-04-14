@@ -5,6 +5,6 @@ namespace Profitroom\CodingStandards\Configuration;
 /**
  * Configuration common for all projects.
  */
-class Common extends Obligatory
+class Common extends Mandatory
 {
 }

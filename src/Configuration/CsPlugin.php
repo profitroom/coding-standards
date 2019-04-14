@@ -7,7 +7,7 @@ use PhpCsFixer\Finder;
 /**
  * Plugin's very own configuration.
  */
-final class CsPlugin extends Obligatory
+final class CsPlugin extends Mandatory
 {
     protected $riskyAllowed = true;
 

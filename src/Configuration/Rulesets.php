@@ -16,7 +16,7 @@ interface Rulesets
             'elements' => ['const', 'method', 'property'],
         ],
     ];
-    public const OBLIGATORY = [
+    public const MANDATORY = [
         '@PSR2' => true,
         'concat_space' => ['spacing' => 'one'],
         'general_phpdoc_annotation_remove' => ['annotations' => ['author']],

@@ -1,0 +1,4 @@
+suites:
+    default:
+        namespace: Profitroom\CodingStandards
+        psr4_prefix: Profitroom\CodingStandards
