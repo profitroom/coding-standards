@@ -13,6 +13,11 @@ abstract class Obligatory implements Rulesets
     /** @var \PhpCsFixer\Config */
     private $config;
 
+    public static function name(): string
+    {
+        return (new \ReflectionClass(static::class))->getShortName();
+    }
+
     public static function specificRules(): array
     {
         return [];
@@ -22,7 +27,7 @@ abstract class Obligatory implements Rulesets
     {
         $rules = array_merge_recursive(static::specificRules(), self::OBLIGATORY);
 
-        $this->config = Config::create()
+        $this->config = (new Config(static::name()))
             ->setFinder($this->finder())
             ->setRules($rules)
             ->setRiskyAllowed($this->riskyAllowed);
@@ -35,6 +40,6 @@ abstract class Obligatory implements Rulesets
 
     protected function finder(): Finder
     {
-        return Finder::create();
+        return Finder::create()->in(getcwd());
     }
 }

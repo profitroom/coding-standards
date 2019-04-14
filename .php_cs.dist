@@ -1,5 +1,1 @@
-<?php
-
-use Profitroom\CodingStandards\Configuration\CsPlugin;
-
-return (new CsPlugin)->config();
+<?php return (new Profitroom\CodingStandards\Configuration\CsPlugin)->config();

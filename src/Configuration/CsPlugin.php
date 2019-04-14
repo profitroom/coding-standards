@@ -18,6 +18,6 @@ final class CsPlugin extends Obligatory
 
     protected function finder(): Finder
     {
-        return parent::finder()->in(__DIR__ . '/..');
+        return parent::finder()->path('src');
     }
 }
