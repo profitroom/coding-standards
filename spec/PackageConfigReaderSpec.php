@@ -9,23 +9,23 @@ use Profitroom\CodingStandards\Configuration\CsPlugin;
 
 class PackageConfigReaderSpec extends ObjectBehavior
 {
-    function let($package)
+    function let(RootPackageInterface $package)
     {
-        $package->beADoubleOf(RootPackageInterface::class);
+        $this->beConstructedWith($package);
     }
 
     function it_reads_coding_standards_from_arbitrary_package_data($package)
     {
         $package->getExtra()->willReturn(['coding-standards' => CsPlugin::class]);
 
-        $this::codingStandards($package)->shouldBe(CsPlugin::class);
+        $this->codingStandards()->shouldBe(CsPlugin::class);
     }
 
     function it_returns_default_coding_standards_when_none_given($package)
     {
         $package->getExtra()->willReturn([]);
 
-        $this::codingStandards($package)->shouldBe(Common::class);
+        $this->codingStandards($package)->shouldBe(Common::class);
     }
 
     function it_checks_whether_configuration_is_valid($package)

@@ -13,11 +13,15 @@ class ConfigurationCommand extends BaseCommand
     /** @var string */
     private $configFile;
 
+    /** @var \Profitroom\CodingStandards\PackageConfigReader */
+    private $packageConfig;
+
     public function __construct(string $name = null)
     {
         parent::__construct($name);
 
         $this->configFile = getcwd() . '/.php_cs.dist';
+        $this->packageConfig = new PackageConfigReader($this->getComposer()->getPackage());
     }
 
     protected function configure()
@@ -37,7 +41,7 @@ class ConfigurationCommand extends BaseCommand
 
         $output->writeln('<info>Crafting coding standards config for the project 👷</info>');
 
-        $codingStandards = PackageConfigReader::codingStandards($this->getComposer()->getPackage());
+        $codingStandards = $this->packageConfig->codingStandards();
 
         file_put_contents($this->configFile, "<?php return (new {$codingStandards})->config();\n");
     }

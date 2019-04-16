@@ -6,9 +6,17 @@ use Composer\Package\RootPackageInterface;
 
 class PackageConfigReader
 {
-    public static function codingStandards(RootPackageInterface $package): string
+    /** @var \Composer\Package\RootPackageInterface */
+    private $package;
+
+    public function __construct(RootPackageInterface $package)
     {
-        $codingStandards = $package->getExtra()['coding-standards'] ?? Configuration\Common::class;
+        $this->package = $package;
+    }
+
+    public function codingStandards(): string
+    {
+        $codingStandards = $this->extra('coding-standards', Configuration\Common::class);
 
         if (!is_subclass_of($codingStandards, Configuration\Mandatory::class)) {
             throw new \RuntimeException(
@@ -17,5 +25,10 @@ class PackageConfigReader
         }
 
         return $codingStandards;
+    }
+
+    protected function extra(string $name, $default = null): ?string
+    {
+        return $this->package->getExtra()[$name] ?? $default;
     }
 }

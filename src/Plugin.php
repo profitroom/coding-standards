@@ -27,9 +27,10 @@ class Plugin implements PluginInterface, Capable, EventSubscriberInterface
         $composer = $event->getComposer();
         $io = $event->getIO();
 
-        $codingStandards = PackageConfigReader::codingStandards($composer->getPackage());
-
         if ($io->isDebug()) {
+            $packageConfig = new PackageConfigReader($composer->getPackage());
+            $codingStandards = $packageConfig->codingStandards();
+
             $io->write("<info>Using {$codingStandards} coding standard</info>");
         }
 
