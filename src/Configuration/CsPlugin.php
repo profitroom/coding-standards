@@ -11,7 +11,7 @@ final class CsPlugin extends Mandatory
 {
     protected $riskyAllowed = true;
 
-    public static function specificRules(): array
+    public function specificRules(): array
     {
         return static::CODING_STYLE_PLUGIN;
     }

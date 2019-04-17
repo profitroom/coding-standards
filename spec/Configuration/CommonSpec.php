@@ -22,7 +22,7 @@ class CommonSpec extends ObjectBehavior
 
     function it_does_not_have_any_specific_rules()
     {
-        $this::specificRules()->shouldHaveCount(0);
+        $this->specificRules()->shouldHaveCount(0);
     }
 
     function it_calls_the_config_with_his_name()

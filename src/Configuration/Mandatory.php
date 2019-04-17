@@ -8,7 +8,7 @@ use PhpCsFixer\Finder;
 /**
  * Mandatory configuration for all projects.
  */
-abstract class Mandatory implements Rulesets
+abstract class Mandatory implements Configuration, Rulesets
 {
     /** @var bool */
     protected $riskyAllowed = false;
@@ -21,24 +21,27 @@ abstract class Mandatory implements Rulesets
         return (new \ReflectionClass(static::class))->getShortName();
     }
 
-    public static function specificRules(): array
-    {
-        return [];
-    }
-
     final public function __construct()
     {
-        $rules = array_merge_recursive(static::specificRules(), self::MANDATORY);
-
         $this->config = (new Config(static::name()))
             ->setFinder($this->finder())
-            ->setRules($rules)
+            ->setRules($this->rules())
             ->setRiskyAllowed($this->riskyAllowed);
     }
 
-    public function config(): Config
+    final public function config(): Config
     {
         return clone $this->config;
+    }
+
+    final public function rules(): array
+    {
+        return array_merge_recursive($this->specificRules(), self::MANDATORY);
+    }
+
+    public function specificRules(): array
+    {
+        return [];
     }
 
     protected function finder(): Finder

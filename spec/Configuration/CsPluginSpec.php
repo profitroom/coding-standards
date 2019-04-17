@@ -17,7 +17,7 @@ class CsPluginSpec extends ObjectBehavior
 
     function it_has_specific_rules()
     {
-        $this::specificRules()->shouldBe(Rulesets::CODING_STYLE_PLUGIN);
+        $this->specificRules()->shouldBe(Rulesets::CODING_STYLE_PLUGIN);
     }
 
     function it_allows_to_run_risky_rules()
