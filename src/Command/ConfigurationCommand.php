@@ -10,20 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ConfigurationCommand extends BaseCommand
 {
-    /** @var string */
-    private $configFile;
-
-    /** @var \Profitroom\CodingStandards\PackageConfigReader */
-    private $packageConfig;
-
-    public function __construct(string $name = null)
-    {
-        parent::__construct($name);
-
-        $this->configFile = getcwd() . '/.php_cs.dist';
-        $this->packageConfig = new PackageConfigReader($this->getComposer()->getPackage());
-    }
-
     protected function configure()
     {
         $this->setName('cs:configuration')
@@ -33,7 +19,9 @@ class ConfigurationCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (is_file($this->configFile) && !$input->getOption('force')) {
+        $configFile = getcwd() . '/.php_cs.dist';
+
+        if (is_file($configFile) && !$input->getOption('force')) {
             $output->writeln('Coding standards file already exists');
 
             return;
@@ -41,8 +29,11 @@ class ConfigurationCommand extends BaseCommand
 
         $output->writeln('<info>Crafting coding standards config for the project 👷</info>');
 
-        $codingStandards = $this->packageConfig->codingStandards();
+        $packageConfig = new PackageConfigReader($this->getComposer()->getPackage());
 
-        file_put_contents($this->configFile, "<?php return (new {$codingStandards})->config();\n");
+        file_put_contents($configFile, sprintf(
+            "<?php return (new %s)->config();\n",
+            $packageConfig->codingStandards()
+        ));
     }
 }
