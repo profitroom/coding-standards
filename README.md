@@ -11,7 +11,7 @@ As a temporary solution, add repository to your project's root `composer.json`:
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@gitlab-ee.profitroom.net:akupczyk/coding-standards.git"
+            "url": "git@gitlab-ee.profitroom.net:profitroom/coding-standards.git"
         }
     ]
 }
