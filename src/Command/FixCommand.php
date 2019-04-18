@@ -26,7 +26,7 @@ class FixCommand extends BaseCommand
 
         $command = ['./vendor/bin/php-cs-fixer', 'fix', '--ansi', '--diff-format=udiff'];
 
-        if ($input->hasOption('dry-run')) {
+        if ($input->getOption('dry-run')) {
             $command[] = '--dry-run';
         }
 
