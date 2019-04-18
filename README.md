@@ -21,7 +21,7 @@ After that you should be able to install the plugin:
 composer require profitroom/coding-standards
 ```
 
-If there is no fixer config (`.php_cs.dist`) in your project, then installing or updating plugin will handle creating it for you. 
+If there is no fixer config (`.php_cs.dist`) in your project, then installing or updating plugin will handle creating it for you.   
 Otherwise it is possible to overwrite existing config using [composer cs:configuration --force](#commands).  
 
 ## Commands
@@ -35,7 +35,8 @@ Plugin provides some useful commands:
 
 There are situations in which default configuration is not enough. 
 It is possible to define rules and paths specific for a concrete project by pointing different configuration 
-provided by the plugin. For this purpose use arbitrary extra data in `composer.json`, e.g.: 
+provided by the plugin.  
+For this purpose use arbitrary extra data in `composer.json`, e.g.: 
 ```json
 {
     "extra": {
@@ -44,4 +45,4 @@ provided by the plugin. For this purpose use arbitrary extra data in `composer.j
 }
 ```
 
-Alternatively you can update `.php_cs.dist` although this is not recommended.
+Alternatively you can update `.php_cs.dist` although this is **not** recommended.
