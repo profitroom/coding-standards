@@ -46,3 +46,7 @@ For this purpose use arbitrary extra data in `composer.json`, e.g.:
 ```
 
 Alternatively you can update `.php_cs.dist` although this is **not** recommended.
+
+## Contribute
+
+Everyone is more than welcome to [contribute](CONTRIBUTING.md). 

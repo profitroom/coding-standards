@@ -13,7 +13,7 @@ final class CsPlugin extends Mandatory
 
     public function specificRules(): array
     {
-        return static::CODING_STYLE_PLUGIN;
+        return $this->rulesets->csPlugin();
     }
 
     protected function finder(): Finder

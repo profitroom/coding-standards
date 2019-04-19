@@ -4,14 +4,18 @@ namespace Profitroom\CodingStandards\Configuration;
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
+use Profitroom\CodingStandards\Rulesets;
 
 /**
  * Mandatory configuration for all projects.
  */
-abstract class Mandatory implements Configuration, Rulesets
+abstract class Mandatory implements Configuration
 {
     /** @var bool */
     protected $riskyAllowed = false;
+
+    /** @var Rulesets */
+    protected $rulesets;
 
     /** @var \PhpCsFixer\Config */
     private $config;
@@ -21,8 +25,10 @@ abstract class Mandatory implements Configuration, Rulesets
         return (new \ReflectionClass(static::class))->getShortName();
     }
 
-    final public function __construct()
+    final public function __construct(Rulesets $rulesets)
     {
+        $this->rulesets = $rulesets;
+
         $this->config = (new Config(static::name()))
             ->setFinder($this->finder())
             ->setRules($this->rules())
@@ -36,7 +42,7 @@ abstract class Mandatory implements Configuration, Rulesets
 
     final public function rules(): array
     {
-        return array_merge_recursive($this->specificRules(), self::MANDATORY);
+        return array_merge_recursive($this->specificRules(), $this->rulesets->mandatory());
     }
 
     public function specificRules(): array
