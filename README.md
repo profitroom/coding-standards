@@ -5,13 +5,13 @@ The purpose of this plugin is to ensure compliance with the adopted standards an
   
 ## Installation
 
-As a temporary solution, add repository to your project's root `composer.json`:
+Add repository to your project's root `composer.json`:
 ```json
 {
     "repositories": [
         {
-            "type": "vcs",
-            "url": "git@gitlab-ee.profitroom.net:profitroom/coding-standards.git"
+            "type": "composer",
+            "url": "https://satis.profitroom.pl"
         }
     ]
 }
