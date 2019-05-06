@@ -22,19 +22,6 @@ class Rulesets
     }
 
     /**
-     * @param string $fileName
-     *
-     * @return array
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     */
-    protected function load(string $fileName): array
-    {
-        $ruleset = Yaml::parseFile($this->fileLocator->locate($fileName));
-
-        return current($ruleset);
-    }
-
-    /**
      * @param string $name
      * @param array  $arguments
      *
@@ -55,5 +42,18 @@ class Rulesets
         } catch (ParseException $exception) {
             throw new \RuntimeException("Ruleset \"${name}\" could not be parsed");
         }
+    }
+
+    /**
+     * @param string $fileName
+     *
+     * @return array
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
+    protected function load(string $fileName): array
+    {
+        $ruleset = Yaml::parseFile($this->fileLocator->locate($fileName));
+
+        return current($ruleset);
     }
 }
