@@ -18,6 +18,10 @@ class PackageConfigReader
     {
         $codingStandards = $this->extra('coding-standards', Configuration\Common::class);
 
+        if (!class_exists($codingStandards)) {
+            throw new \RuntimeException("Configuration [{$codingStandards}] does not exist.");
+        }
+
         if (!is_subclass_of($codingStandards, Configuration\Mandatory::class)) {
             throw new \RuntimeException(
                 "Configuration [{$codingStandards}] must extend mandatory coding standards."
