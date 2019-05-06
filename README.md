@@ -18,7 +18,7 @@ Add repository to your project's root `composer.json`:
 ```
 After that you should be able to install the plugin:
 ```bash
-composer require profitroom/coding-standards --dev
+composer require --dev profitroom/coding-standards
 ```
 
 If there is no fixer config (`.php_cs.dist`) in your project, then installing or updating plugin will handle creating it for you.   
@@ -44,8 +44,7 @@ For this purpose use arbitrary extra data in `composer.json`, e.g.:
     }
 }
 ```
-
-Alternatively you can update `.php_cs.dist` although this is **not** recommended.
+and update config file using [cs:configuration](#commands) command.
 
 ## Contribute
 
