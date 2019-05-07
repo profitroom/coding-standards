@@ -10,6 +10,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * @method array csPlugin()
  * @method array mandatory()
+ * @method array payments()
  */
 class Rulesets
 {
