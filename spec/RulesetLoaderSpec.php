@@ -3,13 +3,13 @@
 namespace spec\Profitroom\CodingStandards;
 
 use PhpSpec\ObjectBehavior;
-use Profitroom\CodingStandards\Rulesets;
+use Profitroom\CodingStandards\RulesetLoader;
 
-class RulesetsSpec extends ObjectBehavior
+class RulesetLoaderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(Rulesets::class);
+        $this->shouldHaveType(RulesetLoader::class);
     }
 
     function it_is_loading_ruleset_using_its_name()

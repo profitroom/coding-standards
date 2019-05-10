@@ -1,1 +1,1 @@
-<?php return (new Profitroom\CodingStandards\Configuration\CsPlugin(new Profitroom\CodingStandards\Rulesets))->config();
+<?php return (new Profitroom\CodingStandards\Configuration\CsPlugin(new Profitroom\CodingStandards\RulesetLoader))->config();

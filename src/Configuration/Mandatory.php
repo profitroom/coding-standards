@@ -4,7 +4,7 @@ namespace Profitroom\CodingStandards\Configuration;
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
-use Profitroom\CodingStandards\Rulesets;
+use Profitroom\CodingStandards\RulesetLoader;
 
 /**
  * Mandatory configuration for all projects.
@@ -14,7 +14,7 @@ abstract class Mandatory implements Configuration
     /** @var bool */
     protected $riskyAllowed = false;
 
-    /** @var Rulesets */
+    /** @var RulesetLoader */
     protected $rulesets;
 
     /** @var \PhpCsFixer\Config */
@@ -25,7 +25,7 @@ abstract class Mandatory implements Configuration
         return (new \ReflectionClass(static::class))->getShortName();
     }
 
-    final public function __construct(Rulesets $rulesets)
+    final public function __construct(RulesetLoader $rulesets)
     {
         $this->rulesets = $rulesets;
 

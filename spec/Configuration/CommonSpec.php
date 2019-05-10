@@ -4,11 +4,11 @@ namespace spec\Profitroom\CodingStandards\Configuration;
 
 use PhpSpec\ObjectBehavior;
 use Profitroom\CodingStandards\Configuration\Common;
-use Profitroom\CodingStandards\Rulesets;
+use Profitroom\CodingStandards\RulesetLoader;
 
 class CommonSpec extends ObjectBehavior
 {
-    function let(Rulesets $rulesets)
+    function let(RulesetLoader $rulesets)
     {
         $rulesets->mandatory()->willReturn(['foo' => 'bar']);
 

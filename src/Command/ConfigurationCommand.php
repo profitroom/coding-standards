@@ -4,7 +4,7 @@ namespace Profitroom\CodingStandards\Command;
 
 use Composer\Command\BaseCommand;
 use Profitroom\CodingStandards\PackageConfigReader;
-use Profitroom\CodingStandards\Rulesets;
+use Profitroom\CodingStandards\RulesetLoader;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -40,7 +40,7 @@ class ConfigurationCommand extends BaseCommand
         return sprintf(
             '<?php return (new %s(new %s))->config();',
             $packageConfig->codingStandards(),
-            Rulesets::class
+            RulesetLoader::class
         );
     }
 }

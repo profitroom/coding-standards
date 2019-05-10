@@ -4,11 +4,11 @@ namespace spec\Profitroom\CodingStandards\Configuration;
 
 use PhpSpec\ObjectBehavior;
 use Profitroom\CodingStandards\Configuration\CsPlugin;
-use Profitroom\CodingStandards\Rulesets;
+use Profitroom\CodingStandards\RulesetLoader;
 
 class CsPluginSpec extends ObjectBehavior
 {
-    function let(Rulesets $rulesets)
+    function let(RulesetLoader $rulesets)
     {
         $rulesets->csPlugin()->willReturn(['foo' => 'bar']);
         $rulesets->mandatory()->willReturn(['baz' => 'qux']);

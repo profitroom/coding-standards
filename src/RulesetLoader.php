@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Yaml;
  * @method array mandatory()
  * @method array payments()
  */
-class Rulesets
+class RulesetLoader
 {
     /** @var \Symfony\Component\Config\FileLocator */
     private $fileLocator;
@@ -24,9 +24,9 @@ class Rulesets
 
     /**
      * @param string $name
-     * @param array  $arguments
+     * @param array $arguments
      *
-     * @throws \LogicException   if ruleset with the given name does not exist
+     * @throws \LogicException if ruleset with the given name does not exist
      * @throws \RuntimeException if ruleset with the given name could not be parsed
      *
      * @return array parsed ruleset
