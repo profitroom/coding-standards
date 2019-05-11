@@ -38,7 +38,7 @@ class YourCustom extends Mandatory
 Additionally you should create a ruleset file within the `./rulesets` directory.  
 E.g., for ruleset "customRuleset", this should look like this:  
 ```yaml
-# ./rulesets/custom_rules.yaml
+# ./rulesets/custom_ruleset.yaml
 rules:
     blank_line_after_opening_tag: false
     visibility_required:
