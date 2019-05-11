@@ -31,6 +31,11 @@ class PackageConfigReader
         return $codingStandards;
     }
 
+    public function name(): string
+    {
+        return $this->package->getName();
+    }
+
     protected function extra(string $name, $default = null): ?string
     {
         return $this->package->getExtra()[$name] ?? $default;
