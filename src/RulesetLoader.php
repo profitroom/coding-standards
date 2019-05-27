@@ -11,6 +11,7 @@ use Symfony\Component\Yaml\Yaml;
  * @method array csPlugin()
  * @method array mandatory()
  * @method array payments()
+ * @method array vault()
  */
 class RulesetLoader
 {
