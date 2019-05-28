@@ -36,7 +36,7 @@ rules:
     no_empty_statement: true
     no_extra_blank_lines:
         tokens: [break, case, continue, curly_brace_block, default, extra, parenthesis_brace_block, return,
-                 square_brace_block, switch, throw, use, useTrait, use_trait]
+                 square_brace_block, switch, throw, use, use_trait]
     no_leading_import_slash: true
     no_leading_namespace_whitespace: true
     no_multiline_whitespace_around_double_arrow: true
