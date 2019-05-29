@@ -3,3 +3,6 @@
 # These owners will be the default owners for everything in
 # the repo, unless a match on a later line takes precedence.
 * @akupczyk
+
+/rulesets/vault.yaml @pbrzoski
+/src/Configuration/Vault.php @pbrzoski

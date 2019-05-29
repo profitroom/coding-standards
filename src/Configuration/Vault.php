@@ -15,6 +15,6 @@ class Vault extends Mandatory
 
     protected function finder(): Finder
     {
-        return parent::finder()->directories()->path(['app', 'config', 'model']);
+        return Finder::create()->in(['app', 'config', 'model']);
     }
 }
