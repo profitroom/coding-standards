@@ -37,6 +37,9 @@
         "test": "phpspec run"
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.6.x-dev"
+        },
         "class": "Profitroom\\CodingStandards\\Plugin"
     }
 }
