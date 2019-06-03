@@ -4,7 +4,6 @@ namespace Profitroom\CodingStandards\Command;
 
 use Composer\Command\BaseCommand;
 use Profitroom\CodingStandards\PackageConfigReader;
-use Profitroom\CodingStandards\RulesetLoader;
 use SplFileInfo;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,6 +14,21 @@ use Symfony\Component\Finder\Finder;
 class GitHooksCommand extends BaseCommand
 {
     protected const HOOKS_DIR = __DIR__ . '/../../githooks/';
+
+    /**
+     * @return Finder|SplFileInfo[]
+     */
+    public function getHookFiles()
+    {
+        $packageDir = self::HOOKS_DIR . '/' . $this->getConfigurationName();
+
+        $dirs = array_filter([
+            self::HOOKS_DIR,
+            is_dir($packageDir) ? $packageDir : null,
+        ]);
+
+        return Finder::create()->in($dirs)->files();
+    }
 
     protected function configure(): void
     {
@@ -40,14 +54,14 @@ class GitHooksCommand extends BaseCommand
             }
 
             $this->createHook($hook, $hookFile);
-            $output->writeln("<info>Hook $hook has been created successfully!</info>");
+            $output->writeln("<info>Hook {$hook} has been created successfully!</info>");
         }
     }
 
     protected function confirmationQuestion(string $hook): ConfirmationQuestion
     {
         return new ConfirmationQuestion(
-            "Hook <info>$hook</info> already exists! Would you like to override ? [<comment>yes/no</comment>] ",
+            "Hook <info>{$hook}</info> already exists! Would you like to override ? [<comment>yes/no</comment>] ",
             false,
             '/^(yes|y)/i'
         );
@@ -60,9 +74,9 @@ class GitHooksCommand extends BaseCommand
 
     protected function getAvailableHooks(): array
     {
-        $hooks =[];
+        $hooks = [];
 
-        foreach($this->getHookFiles() as $file){
+        foreach ($this->getHookFiles() as $file) {
             $hooks[$file->getFilename()] = $file->getPathname();
         }
 
@@ -74,20 +88,5 @@ class GitHooksCommand extends BaseCommand
         $packageConfig = new PackageConfigReader($this->getComposer()->getPackage());
 
         return strtolower($packageConfig->codingStandardsInstance()->name());
-    }
-
-    /**
-     * @return Finder|SplFileInfo[]
-     */
-    public function getHookFiles()
-    {
-        $packageDir = self::HOOKS_DIR.'/'.$this->getConfigurationName();
-
-        $dirs = array_filter([
-            self::HOOKS_DIR,
-            is_dir($packageDir)? $packageDir: null
-        ]);
-
-        return Finder::create()->in($dirs)->files();
     }
 }

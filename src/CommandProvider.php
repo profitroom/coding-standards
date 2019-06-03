@@ -14,7 +14,7 @@ class CommandProvider implements CommandProviderCapability
         return [
             new ConfigurationCommand,
             new FixCommand,
-            new GitHooksCommand
+            new GitHooksCommand,
         ];
     }
 }
