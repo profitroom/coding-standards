@@ -47,10 +47,9 @@ class GitHooksCommand extends BaseCommand
         $helper = $this->getHelper('question');
 
         foreach ($this->getAvailableHooks() as $hook => $hookFile) {
-            if (!$input->getOption('force')) {
-                if (!$helper->ask($input, $output, $this->confirmationQuestion($hook))) {
-                    continue;
-                }
+            if (!$input->getOption('force')
+                && !$helper->ask($input, $output, $this->confirmationQuestion($hook))) {
+                continue;
             }
 
             $this->createHook($hook, $hookFile);
@@ -69,7 +68,7 @@ class GitHooksCommand extends BaseCommand
 
     protected function createHook(string $hook, string $source): void
     {
-        copy($source, './.git/hooks/' . $hook);
+        copy($source, getcwd() . '/.git/hooks/' . $hook);
     }
 
     protected function getAvailableHooks(): array
