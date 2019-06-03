@@ -40,7 +40,7 @@ class GitHooksCommand extends BaseCommand
             }
 
             $this->createHook($hook, $hookFile);
-            $output->writeln("<info>Hooks $hook has been created successfully!</info>");
+            $output->writeln("<info>Hook $hook has been created successfully!</info>");
         }
     }
 
