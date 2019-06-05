@@ -6,6 +6,8 @@ use Composer\Package\RootPackageInterface;
 
 class PackageConfigReader
 {
+    private const DEFAULT_CODING_STANDARDS = Configuration\Common::class;
+
     /** @var \Composer\Package\RootPackageInterface */
     private $package;
 
@@ -16,7 +18,7 @@ class PackageConfigReader
 
     public function codingStandards(): string
     {
-        $codingStandards = $this->extra('coding-standards', Configuration\Common::class);
+        $codingStandards = $this->extra('coding-standards', self::DEFAULT_CODING_STANDARDS);
 
         if (!class_exists($codingStandards)) {
             throw new \RuntimeException("Configuration [{$codingStandards}] does not exist.");

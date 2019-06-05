@@ -12,6 +12,7 @@ use Symfony\Component\Yaml\Yaml;
  * @method array mandatory()
  * @method array payments()
  * @method array vault()
+ * @method array crm()
  */
 class RulesetLoader
 {
