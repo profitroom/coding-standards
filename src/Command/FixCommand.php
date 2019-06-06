@@ -30,8 +30,9 @@ class FixCommand extends BaseCommand
             $command[] = '--dry-run';
         }
 
-        $fixerOutput = shell_exec(implode(' ', $command));
-
+        exec(implode(' ', $command), $fixerOutput, $exitCode);
         $output->writeln($fixerOutput);
+
+        return $exitCode;
     }
 }
