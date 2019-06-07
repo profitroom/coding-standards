@@ -33,13 +33,6 @@ class PackageConfigReader
         return $codingStandards;
     }
 
-    public function codingStandardsInstance(): Configuration\Configuration
-    {
-        $configurationClass = $this->codingStandards();
-
-        return new $configurationClass(new RulesetLoader());
-    }
-
     public function name(): string
     {
         return $this->package->getName();

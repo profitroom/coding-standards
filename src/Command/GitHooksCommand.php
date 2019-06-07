@@ -3,8 +3,7 @@
 namespace Profitroom\CodingStandards\Command;
 
 use Composer\Command\BaseCommand;
-use Profitroom\CodingStandards\PackageConfigReader;
-use SplFileInfo;
+use Profitroom\CodingStandards\ConfigurationFactory;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,7 +15,7 @@ class GitHooksCommand extends BaseCommand
     protected const HOOKS_DIR = __DIR__ . '/../../githooks/';
 
     /**
-     * @return Finder|SplFileInfo[]
+     * @return Finder|\SplFileInfo[]
      */
     public function getHookFiles()
     {
@@ -84,8 +83,8 @@ class GitHooksCommand extends BaseCommand
 
     protected function getConfigurationName(): string
     {
-        $packageConfig = new PackageConfigReader($this->getComposer()->getPackage());
+        $configuration = ConfigurationFactory::createByPackage($this->getComposer()->getPackage());
 
-        return strtolower($packageConfig->codingStandardsInstance()->name());
+        return $configuration->name();
     }
 }
