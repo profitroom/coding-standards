@@ -4,5 +4,6 @@
 # the repo, unless a match on a later line takes precedence.
 * @akupczyk
 
-/rulesets/vault.yaml @pbrzoski
+/src/Configuration/Crm.php @mbusko
+/scr/Configuration/Payments.php @gbandur @sshostak
 /src/Configuration/Vault.php @pbrzoski

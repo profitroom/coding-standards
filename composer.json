@@ -3,13 +3,11 @@
     "description": "Plugin that helps maintaining coding standards among company's products",
     "type": "composer-plugin",
     "require": {
-        "composer-plugin-api": "^1.1",
-        "friendsofphp/php-cs-fixer": "^2.14",
-        "symfony/config": "^4.2",
-        "symfony/yaml": "^4.2"
+        "composer-plugin-api": "^1.1"
     },
     "require-dev": {
         "composer/composer": "^1.8",
+        "friendsofphp/php-cs-fixer": "^2.15",
         "phpmd/phpmd": "^2.6",
         "phpspec/phpspec": "^5.1"
     },
@@ -41,5 +39,6 @@
             "dev-master": "0.7-dev"
         },
         "class": "Profitroom\\CodingStandards\\Plugin"
-    }
+    },
+    "bin": ["bin/php-cs-fixer"]
 }

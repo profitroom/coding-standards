@@ -1,1 +1,5 @@
-<?php return (new Profitroom\CodingStandards\Configuration\CsPlugin(new Profitroom\CodingStandards\RulesetLoader))->config();
+<?php
+
+require_once 'vendor/autoload.php';
+
+return Profitroom\CodingStandards\Configuration\CsPlugin::config();

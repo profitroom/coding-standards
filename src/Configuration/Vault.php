@@ -10,7 +10,22 @@ class Vault extends Mandatory
 
     public function specificRules(): array
     {
-        return $this->rulesets->vault();
+        return [
+            '@PhpCsFixer' => true,
+            '@Symfony' => true,
+            'blank_line_after_opening_tag' => false,
+            'multiline_whitespace_before_semicolons' => [
+                'strategy' => 'no_multi_line',
+            ],
+            'new_with_braces' => true,
+            'visibility_required' => [
+                'elements' => ['const', 'method', 'property'],
+            ],
+            'logical_operators' => true,
+            'no_php4_constructor' => true,
+            'standardize_not_equals' => true,
+            'psr4' => true,
+        ];
     }
 
     protected function finder(): Finder

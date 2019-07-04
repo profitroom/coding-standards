@@ -26,7 +26,9 @@ class YourCustom extends Mandatory
 {
     public function specificRules(): array
     {
-        return $this->rulesets->customRuleset();
+        return [
+            'blank_line_after_opening_tag' => false,
+        ];
     }
     
     protected function finder(): Finder
@@ -35,13 +37,4 @@ class YourCustom extends Mandatory
     }
 }
 ```
-Additionally you should create a ruleset file within the `./rulesets` directory.  
-E.g., for ruleset "customRuleset", this should look like this:  
-```yaml
-# ./rulesets/custom_ruleset.yaml
-rules:
-    blank_line_after_opening_tag: false
-    visibility_required:
-        elements: [const, method, property]
-``` 
 The list of available rules can be found [here](https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/master/README.rst).

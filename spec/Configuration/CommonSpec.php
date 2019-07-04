@@ -2,22 +2,20 @@
 
 namespace spec\Profitroom\CodingStandards\Configuration;
 
+use PhpCsFixer\Config;
 use PhpSpec\ObjectBehavior;
 use Profitroom\CodingStandards\Configuration\Common;
-use Profitroom\CodingStandards\RulesetLoader;
 
 class CommonSpec extends ObjectBehavior
 {
-    function let(RulesetLoader $rulesets)
-    {
-        $rulesets->mandatory()->willReturn(['foo' => 'bar']);
-
-        $this->beConstructedWith($rulesets);
-    }
-
     function it_is_initializable()
     {
         $this->shouldHaveType(Common::class);
+    }
+
+    function it_creates_config_using_factory_method()
+    {
+        $this::config()->shouldBeAnInstanceOf(Config::class);
     }
 
     function it_has_a_name()
@@ -34,16 +32,11 @@ class CommonSpec extends ObjectBehavior
     {
         $name = $this::name();
 
-        $this->config()->getName()->shouldBe($name);
-    }
-
-    function it_uses_mandatory_ruleset()
-    {
-        $this->config()->getRules()->shouldBe(['foo' => 'bar']);
+        $this->configCopy()->getName()->shouldBe($name);
     }
 
     function it_does_not_allow_to_run_risky_rules()
     {
-        $this->config()->getRiskyAllowed()->shouldBe(false);
+        $this->configCopy()->getRiskyAllowed()->shouldBe(false);
     }
 }

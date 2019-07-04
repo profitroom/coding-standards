@@ -14,11 +14,11 @@ interface Configuration
     public static function name(): string;
 
     /**
-     * Return a coding standards fixer config.
+     * Return a copy of the coding standards fixer config.
      *
      * @return \PhpCsFixer\Config
      */
-    public function config(): Config;
+    public function configCopy(): Config;
 
     /**
      * Return a full list of coding standards rules.

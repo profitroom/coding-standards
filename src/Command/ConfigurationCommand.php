@@ -4,7 +4,6 @@ namespace Profitroom\CodingStandards\Command;
 
 use Composer\Command\BaseCommand;
 use Profitroom\CodingStandards\PackageConfigReader;
-use Profitroom\CodingStandards\RulesetLoader;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,10 +36,12 @@ class ConfigurationCommand extends BaseCommand
 
     protected function generateConfigBody(PackageConfigReader $packageConfig): string
     {
-        return sprintf(
-            '<?php return (new %s(new %s))->config();',
-            $packageConfig->codingStandards(),
-            RulesetLoader::class
-        );
+        return <<<EOT
+<?php
+
+require_once 'vendor/autoload.php';
+
+return {$packageConfig->codingStandards()}::config();
+EOT;
     }
 }

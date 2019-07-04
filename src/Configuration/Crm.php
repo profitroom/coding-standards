@@ -10,7 +10,18 @@ class Crm extends Mandatory
 
     public function specificRules(): array
     {
-        return $this->rulesets->crm();
+        return [
+            '@PhpCsFixer' => true,
+            '@Symfony' => true,
+            'blank_line_after_opening_tag' => false,
+            'multiline_whitespace_before_semicolons' => [
+                'strategy' => 'no_multi_line',
+            ],
+            'new_with_braces' => true,
+            'visibility_required' => [
+                'elements' => ['const', 'method', 'property'],
+            ],
+        ];
     }
 
     protected function finder(): Finder
