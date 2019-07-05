@@ -32,7 +32,7 @@
     "scripts": {
         "fixcs": "php-cs-fixer fix --ansi --diff-format=udiff",
         "analyse": "phpmd src text phpmd.xml",
-        "test": "phpspec run"
+        "test": "phpspec run --ansi"
     },
     "extra": {
         "branch-alias": {
@@ -40,5 +40,7 @@
         },
         "class": "Profitroom\\CodingStandards\\Plugin"
     },
-    "bin": ["bin/php-cs-fixer"]
+    "bin": [
+        "bin/php-cs-fixer"
+    ]
 }
