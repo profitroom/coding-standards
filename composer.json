@@ -3,6 +3,7 @@
     "description": "Plugin that helps maintaining coding standards among company's products",
     "type": "composer-plugin",
     "require": {
+        "php": "^7.0",
         "composer-plugin-api": "^1.1"
     },
     "require-dev": {
