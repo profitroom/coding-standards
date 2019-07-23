@@ -1,2 +1,8 @@
-STUB
-pre-commit standard
+#!/bin/bash
+
+stagedFiles=`git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\\\.php`
+
+for file in $stagedFiles; do
+    vendor/bin/php-cs-fixer fix $file
+    git add $file
+done
