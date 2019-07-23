@@ -1,8 +1,9 @@
 {
     "name": "profitroom/coding-standards",
-    "description": "Plugin that helps maintaining coding standards among company's products",
+    "description": "Plugin that helps maintaining coding standards among multiple projects",
     "type": "composer-plugin",
     "require": {
+        "php": "^7.0",
         "composer-plugin-api": "^1.1"
     },
     "require-dev": {
@@ -10,7 +11,7 @@
         "phpmd/phpmd": "^2.6",
         "phpspec/phpspec": "^5.1"
     },
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Andrzej Kupczyk",
@@ -35,7 +36,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.7-dev"
+            "dev-master": "1.0-dev"
         },
         "class": "Profitroom\\CodingStandards\\Plugin"
     },

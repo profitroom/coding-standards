@@ -5,20 +5,19 @@ The purpose of this plugin is to ensure compliance with the adopted standards an
   
 ## Installation
 
-Add repository to your project's root `composer.json`:
+This package can be installed via Composer:
+
+```bash
+composer require --dev profitroom/coding-standards:^1.0
+```
+
+Since package is still in development stage, you have to set minimum stability requirements in your `composer.json`:
 ```json
 {
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://satis.profitroom.pl"
-        }
-    ]
+    …
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
-```
-After that you should be able to install the plugin:
-```bash
-composer require --dev profitroom/coding-standards
 ```
 
 If there is no fixer config (`.php_cs.dist`) in your project, then installing or updating plugin will handle creating it for you.   
@@ -39,8 +38,9 @@ provided by the plugin.
 For this purpose use arbitrary extra data in `composer.json`, e.g.: 
 ```json
 {
+    …
     "extra": {
-        "coding-standards": "Profitroom\\CodingStandards\\Configuration\\CsPlugin"
+        "coding-standards": "Profitroom\\CodingStandards\\Configuration\\Common"
     }
 }
 ```
