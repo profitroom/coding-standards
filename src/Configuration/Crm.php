@@ -23,9 +23,4 @@ class Crm extends Mandatory
             ],
         ];
     }
-
-    protected function finder(): Finder
-    {
-        return parent::finder()->path(['app/', 'config/']);
-    }
 }
