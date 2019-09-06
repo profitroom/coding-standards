@@ -2,7 +2,9 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
-abstract class Crm extends Mandatory
+use PhpCsFixer\Finder;
+
+abstract class Communication extends Mandatory
 {
     protected $riskyAllowed = true;
 
@@ -12,10 +14,14 @@ abstract class Crm extends Mandatory
             '@PhpCsFixer' => true,
             '@Symfony' => true,
             'blank_line_after_opening_tag' => true,
+            'declare_strict_types' => true,
+            'logical_operators' => true,
             'multiline_whitespace_before_semicolons' => [
                 'strategy' => 'no_multi_line',
             ],
             'new_with_braces' => true,
+            'no_php4_constructor' => true,
+            'psr4' => true,
             'visibility_required' => [
                 'elements' => ['const', 'method', 'property'],
             ],
