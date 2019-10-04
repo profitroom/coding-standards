@@ -2,9 +2,7 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
-use PhpCsFixer\Finder;
-
-abstract class Communication extends Mandatory
+class Communication extends Mandatory
 {
     protected $riskyAllowed = true;
 
