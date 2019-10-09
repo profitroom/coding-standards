@@ -2,7 +2,7 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
-abstract class Crm extends Mandatory
+class Crm extends Mandatory
 {
     protected $riskyAllowed = true;
 

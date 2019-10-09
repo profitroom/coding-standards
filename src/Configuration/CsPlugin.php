@@ -2,8 +2,6 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
-use PhpCsFixer\Finder;
-
 /**
  * Plugin's very own configuration.
  */
@@ -26,10 +24,5 @@ final class CsPlugin extends Mandatory
                 'elements' => ['const', 'method', 'property'],
             ],
         ];
-    }
-
-    protected function finder(): Finder
-    {
-        return parent::finder()->path('src');
     }
 }

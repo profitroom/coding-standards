@@ -27,6 +27,6 @@ class Payments extends Mandatory
 
     protected function finder(): Finder
     {
-        return parent::finder()->path('src')->exclude('Tests');
+        return parent::finder()->exclude('Tests');
     }
 }

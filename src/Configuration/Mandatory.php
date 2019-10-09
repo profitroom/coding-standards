@@ -111,6 +111,9 @@ abstract class Mandatory implements Configuration
         'yoda_style' => ['equal' => false, 'identical' => false, 'less_and_greater' => false],
     ];
 
+    /** @var array */
+    private $paths = ['app/', 'config/', 'src/'];
+
     /**
      * Syntactic sugar which simplifies getting Config.
      *
@@ -151,6 +154,13 @@ abstract class Mandatory implements Configuration
 
     protected function finder(): Finder
     {
-        return Finder::create()->in(getcwd());
+        $finder = Finder::create()->in(getcwd())->name('*.php');
+
+        // don't pass paths as an array because of a bug somewhere in the Symfony component
+        foreach ($this->paths as $path) {
+            $finder->path($path);
+        }
+
+        return $finder;
     }
 }
