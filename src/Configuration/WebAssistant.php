@@ -2,10 +2,9 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
-/**
- * Plugin's very own configuration.
- */
-final class CsPlugin extends Mandatory
+use PhpCsFixer\Finder;
+
+class WebAssistant extends Mandatory
 {
     protected $riskyAllowed = true;
 
@@ -14,12 +13,10 @@ final class CsPlugin extends Mandatory
         return [
             '@PhpCsFixer' => true,
             '@Symfony' => true,
-            'blank_line_after_opening_tag' => false,
             'declare_strict_types' => true,
             'multiline_whitespace_before_semicolons' => [
                 'strategy' => 'no_multi_line',
             ],
-            'new_with_braces' => false,
             'visibility_required' => [
                 'elements' => ['const', 'method', 'property'],
             ],
@@ -28,6 +25,6 @@ final class CsPlugin extends Mandatory
 
     protected function finder(): Finder
     {
-        return parent::finder()->exclude('spec');
+        return parent::finder()->exclude('Tests');
     }
 }
