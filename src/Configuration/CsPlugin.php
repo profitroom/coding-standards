@@ -2,6 +2,8 @@
 
 namespace Profitroom\CodingStandards\Configuration;
 
+use PhpCsFixer\Finder;
+
 /**
  * Plugin's very own configuration.
  */
