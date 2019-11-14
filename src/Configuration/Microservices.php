@@ -4,7 +4,7 @@ namespace Profitroom\CodingStandards\Configuration;
 
 use PhpCsFixer\Finder;
 
-class WebAssistant extends Mandatory
+class Microservices extends Mandatory
 {
     protected $riskyAllowed = true;
 
@@ -14,9 +14,12 @@ class WebAssistant extends Mandatory
             '@PhpCsFixer' => true,
             '@Symfony' => true,
             'declare_strict_types' => true,
+            'logical_operators' => true,
             'multiline_whitespace_before_semicolons' => [
                 'strategy' => 'no_multi_line',
             ],
+            'no_php4_constructor' => true,
+            'psr4' => true,
             'visibility_required' => [
                 'elements' => ['const', 'method', 'property'],
             ],
