@@ -14,13 +14,6 @@ class PackageConfigReaderSpec extends ObjectBehavior
         $this->beConstructedWith($package);
     }
 
-    function it_returns_package_name($package)
-    {
-        $package->getName()->willReturn('foobar');
-
-        $this->name()->shouldBe('foobar');
-    }
-
     function it_reads_coding_standards_from_arbitrary_package_data($package)
     {
         $package->getExtra()->willReturn(['coding-standards' => CsPlugin::class]);

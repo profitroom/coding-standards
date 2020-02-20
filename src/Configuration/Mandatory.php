@@ -4,6 +4,7 @@ namespace Profitroom\CodingStandards\Configuration;
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
+use ReflectionClass;
 
 /**
  * Mandatory configuration for all projects.
@@ -126,7 +127,7 @@ abstract class Mandatory implements Configuration
 
     public static function name(): string
     {
-        return (new \ReflectionClass(static::class))->getShortName();
+        return (new ReflectionClass(static::class))->getShortName();
     }
 
     final public function __construct()

@@ -21,7 +21,7 @@ class FixCommand extends BaseCommand
         if (!is_file(getcwd() . '/.php_cs.dist')) {
             $output->writeln('<warning>Couldn\'t find the config file</warning>');
 
-            return;
+            return 1;
         }
 
         $command = ['./vendor/bin/php-cs-fixer', 'fix', '--ansi', '--diff-format=udiff'];

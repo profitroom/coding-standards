@@ -3,29 +3,36 @@
 namespace Profitroom\CodingStandards;
 
 use Composer\Package\RootPackageInterface;
+use Profitroom\CodingStandards\Configuration\Mandatory;
+use Profitroom\CodingStandards\Resolver\Configuration;
+use Profitroom\CodingStandards\Resolver\Resolver;
+use Profitroom\CodingStandards\Resolver\Strategy;
+use RuntimeException;
 
 class PackageConfigReader
 {
-    private const DEFAULT_CODING_STANDARDS = Configuration\Common::class;
-
     /** @var \Composer\Package\RootPackageInterface */
     private $package;
 
-    public function __construct(RootPackageInterface $package)
+    /** @var \Profitroom\CodingStandards\Resolver\Resolver */
+    private $resolver;
+
+    public function __construct(RootPackageInterface $package, ?Resolver $resolver = null)
     {
         $this->package = $package;
+        $this->resolver = $resolver ?: $this->defaultResolver();
     }
 
     public function codingStandards(): string
     {
-        $codingStandards = $this->extra('coding-standards', self::DEFAULT_CODING_STANDARDS);
+        $codingStandards = $this->resolver->resolve();
 
         if (!class_exists($codingStandards)) {
-            throw new \RuntimeException("Configuration [{$codingStandards}] does not exist.");
+            throw new RuntimeException("Configuration [{$codingStandards}] does not exist.");
         }
 
-        if (!is_subclass_of($codingStandards, Configuration\Mandatory::class)) {
-            throw new \RuntimeException(
+        if (!is_subclass_of($codingStandards, Mandatory::class)) {
+            throw new RuntimeException(
                 "Configuration [{$codingStandards}] must extend mandatory coding standards."
             );
         }
@@ -33,13 +40,10 @@ class PackageConfigReader
         return $codingStandards;
     }
 
-    public function name(): string
+    private function defaultResolver(): Resolver
     {
-        return $this->package->getName();
-    }
-
-    protected function extra(string $name, $default = null): ?string
-    {
-        return $this->package->getExtra()[$name] ?? $default;
+        return new Configuration([
+            new Strategy\PackageExtraData($this->package),
+        ]);
     }
 }

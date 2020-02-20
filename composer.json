@@ -3,7 +3,7 @@
     "description": "Plugin that helps maintaining coding standards among multiple projects",
     "type": "composer-plugin",
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "composer-plugin-api": "^1.1"
     },
     "require-dev": {
@@ -31,7 +31,8 @@
         "sort-packages": true
     },
     "scripts": {
-        "fixcs": "php-cs-fixer fix --ansi --diff-format=udiff",
+        "cs:fix": "php-cs-fixer fix --ansi --diff-format=udiff",
+        "cs:lint": "php-cs-fixer fix --ansi --diff-format=udiff --dry-run",
         "analyse": "phpmd src text phpmd.xml",
         "test": "phpspec run --ansi"
     },
