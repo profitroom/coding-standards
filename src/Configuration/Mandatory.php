@@ -117,8 +117,6 @@ abstract class Mandatory implements Configuration
 
     /**
      * Syntactic sugar which simplifies getting Config.
-     *
-     * @return \PhpCsFixer\Config
      */
     public static function config(): Config
     {

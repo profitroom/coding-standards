@@ -3,16 +3,15 @@
 namespace Profitroom\CodingStandards;
 
 use Composer\Plugin\Capability\CommandProvider as CommandProviderCapability;
-use Profitroom\CodingStandards\Command\ConfigurationCommand;
-use Profitroom\CodingStandards\Command\FixCommand;
 
 class CommandProvider implements CommandProviderCapability
 {
     public function getCommands(): array
     {
         return [
-            new ConfigurationCommand,
-            new FixCommand,
+            new Command\ConfigurationCommand(),
+            new Command\FixCommand(),
+            new Command\LintCommand(),
         ];
     }
 }

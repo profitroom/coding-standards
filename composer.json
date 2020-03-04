@@ -7,9 +7,9 @@
         "composer-plugin-api": "^1.1"
     },
     "require-dev": {
-        "composer/composer": "^1.8",
-        "friendsofphp/php-cs-fixer": "^2.15",
-        "phpmd/phpmd": "^2.6",
+        "composer/composer": "^1.9",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpmd/phpmd": "^2.8",
         "phpspec/phpspec": "^5.1"
     },
     "license": "MIT",
@@ -32,7 +32,7 @@
     },
     "scripts": {
         "cs:fix": "php-cs-fixer fix --ansi --diff-format=udiff",
-        "cs:lint": "php-cs-fixer fix --ansi --diff-format=udiff --dry-run",
+        "cs:lint": "php-cs-fixer fix -v --ansi --dry-run --stop-on-violation --using-cache=no",
         "analyse": "phpmd src text phpmd.xml",
         "test": "phpspec run --ansi"
     },

@@ -4,18 +4,16 @@ namespace Profitroom\CodingStandards\Command;
 
 use Composer\Command\BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class FixCommand extends BaseCommand
+class LintCommand extends BaseCommand
 {
     use ConfigFileRequirement;
 
     protected function configure()
     {
-        $this->setName('cs:fix')
-            ->setDescription('Fixes code in accordance to coding standards')
-            ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Run the fixer without making changes');
+        $this->setName('cs:lint')
+            ->setDescription('Checks code in accordance to coding standards');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -27,11 +25,7 @@ class FixCommand extends BaseCommand
         }
 
         $fixerOutput = $exitCode = null;
-        $command = './vendor/bin/php-cs-fixer fix --ansi --diff-format=udiff';
-
-        if ($input->getOption('dry-run')) {
-            $command .= ' --dry-run';
-        }
+        $command = './vendor/bin/php-cs-fixer fix -v --ansi --dry-run --stop-on-violation --using-cache=no';
 
         exec($command, $fixerOutput, $exitCode);
         $output->writeln($fixerOutput);

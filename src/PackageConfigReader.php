@@ -32,9 +32,7 @@ class PackageConfigReader
         }
 
         if (!is_subclass_of($codingStandards, Mandatory::class)) {
-            throw new RuntimeException(
-                "Configuration [{$codingStandards}] must extend mandatory coding standards."
-            );
+            throw new RuntimeException("Configuration [{$codingStandards}] must extend mandatory coding standards.");
         }
 
         return $codingStandards;

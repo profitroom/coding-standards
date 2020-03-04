@@ -8,29 +8,21 @@ interface Configuration
 {
     /**
      * Return a unique name of the configuration.
-     *
-     * @return string
      */
     public static function name(): string;
 
     /**
      * Return a copy of the coding standards fixer config.
-     *
-     * @return \PhpCsFixer\Config
      */
     public function configCopy(): Config;
 
     /**
      * Return a full list of coding standards rules.
-     *
-     * @return array
      */
     public function rules(): array;
 
     /**
      * Return a list of rules specific for the configuration.
-     *
-     * @return array
      */
     public function specificRules(): array;
 }

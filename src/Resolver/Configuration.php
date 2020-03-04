@@ -17,7 +17,9 @@ class Configuration implements Resolver
     public function resolve(): ?string
     {
         foreach ($this->strategies as $strategy) {
-            if ($configuration = $strategy->resolve()) {
+            $configuration = $strategy->resolve();
+
+            if ($configuration !== null) {
                 return $configuration;
             }
         }
